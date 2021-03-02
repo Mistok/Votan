@@ -1,0 +1,28 @@
+@import "../style_vars";
+
+.form_control{
+  border-radius: 4px;
+  padding: 5px 5px 5px 25px;
+  display: block;
+  border: 1px solid $light_blue;
+  letter-spacing: 1.05px;
+  text-transform: capitalize;
+  transition: .3s;
+  margin-top: 20px;
+  width: 100%;
+  color: $font_color;
+  font-size: 14px;
+}
+.form_control:focus{
+  border: 1px solid $blue !important;
+  outline: none;
+}
+.error_input{
+  border: 1px solid $red !important;
+}
+.error_message{
+  position: absolute;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: $red;
+}

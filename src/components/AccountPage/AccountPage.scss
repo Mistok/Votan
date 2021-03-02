@@ -1,0 +1,117 @@
+
+
+@import "./src/style_vars.scss";
+
+.account_section{
+    background: $bg_grey;
+}
+
+.accounts_page_left{
+    .navbar{
+        padding: 0;
+    }
+}
+
+.accounts_link{
+    color: #000 !important;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    border-left: 0;
+    border-right: 0;
+}
+
+.accounts_header{
+    font-family: 'Roboto', sans-serif;
+}
+.accounts_page_left .nav-link{
+    div{
+        padding: 5px 20px;
+    }
+}
+
+.nav-link{
+    div{
+        svg{
+            fill: $bg_dark !important;
+        }
+    }
+
+}
+.nav-link.active{
+    //background-color: transparent;
+    //border-color: transparent;
+    div{
+
+        color: $blue;
+        background-color: $light_blue;
+        border-radius: 4px;
+        svg{
+            fill: $blue !important;
+        }
+    }
+
+}
+.accounts_link.active{
+
+}
+.list-group-item, .list-group-item:hover {
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.account_info {
+    padding: 20px 30px;
+}
+
+.accounts_info_left{
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.accounts_info_left a{
+    color: var(--grey-dark);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.accounts_info_left a:first-child{
+    align-items: center;
+}
+
+.account_sub_menu{
+    list-style: none;
+    align-items: flex-start;
+    font-size: 14px;
+}
+
+.accounts_page_left{
+    height: 100vh;
+    background-color: $white;
+}
+
+.add_fac_modal_container{
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--accent-color);
+}
+
+/* sidebar */
+
+.account_menu_icon{
+    margin-right: 20px;
+}
+
+.accounts_page_right{
+    position: relative;
+    background-color: $bg_grey;
+    min-height: 100%;
+}
+@media screen and ( max-width: 767px) {
+    .accounts_page_left{
+        height: auto;
+    }
+}

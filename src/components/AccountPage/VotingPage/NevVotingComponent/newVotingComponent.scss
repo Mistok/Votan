@@ -1,0 +1,84 @@
+@import "src/style_vars";
+.new_voting_list{
+  padding: 0;
+  color: $text-grey;
+}
+.new_voting_container{
+  padding: 20px 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid $border_grey;
+  position: relative;
+  .auth_field{
+    background: $light_blue;
+  }
+}
+.new_voting_input_label{
+  width: 100%;
+  .new_voting_field{
+    background: $input_blue;
+    border-radius: 3px;
+    resize: none;
+    margin-top: 10px;
+    border: 1px solid $border_grey;
+    font-size: 11px;
+  }
+}
+.new_voting_item{
+  list-style: none;
+}
+
+.new_voting_item{
+  position: relative;
+}
+.new_voting_delete{
+  position: absolute;
+  right: 0;
+  top: 15px;
+  color: $bg_dark;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+.new_voting_add_new{
+  background: transparent;
+  border: 2px solid transparent;
+  transition: .5s;
+  font-size: 12px;
+  color: $text-grey;
+  margin-top: 15px;
+  span{
+    margin-left: 20px;
+    font-size: 12px;
+  }
+
+  .new_voting_rotation{
+    transition: .5s;
+    transform: rotate(0);
+    transform-origin: center center;
+  }
+  &:hover{
+    border: 2px solid $border_grey;
+    border-radius: 5px;
+    .new_voting_rotation{
+      transform: rotate(45deg);
+    }
+  }
+  &:active{
+    border: 1px solid $border_grey;
+  }
+
+}
+.new_voting_start_voting{
+  font-size: 12px;
+  padding: 5px 10px;
+}
+.new_voting_error{
+  color: red;
+  font-style: italic;
+  display: inline-flex;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}

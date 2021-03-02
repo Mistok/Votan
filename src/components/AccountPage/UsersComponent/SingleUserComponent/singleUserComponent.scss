@@ -1,0 +1,73 @@
+@import "src/style_vars";
+
+.active_user{
+  color: red;
+}
+.sing_user_container{
+  background-color: $white;
+  padding: 40px;
+  font-size: 14px;
+  position: relative;
+}
+.sing_user_descr_row{
+  div{
+    display: inline-flex;
+    justify-content: space-between;
+  }
+
+}
+.sing_user_descr{
+  color: $bg_dark;
+  font-size: 12px;
+  font-style: italic;
+  display: inline-flex;
+  justify-content: space-between;
+}
+.sing_user_delete_btn{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: transparent;
+  transition: .6s;
+  &:hover, &:focus, &:active{
+    border-color: $bg_dark;
+    outline: none;
+  }
+}
+.sing_user_apartment_container{
+  padding: 10px;
+  background: $bg_grey;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-top: 20px;
+  p{
+    margin-bottom: 0;
+  }
+}
+
+.users_list_item{
+  padding: 15px;
+  background: $white;
+  color: $text-grey;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  transform: scale(1);
+  transition: .3s;
+
+  &:hover{
+    transform: scale(1.01);
+    text-decoration: none;
+    color: inherit;
+  }
+  &:active{
+    background: $light_blue;
+    color: white;
+  }
+}
+
+.users_list_delete_user{
+  top: -2px;
+
+}

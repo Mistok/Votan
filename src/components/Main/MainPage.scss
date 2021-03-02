@@ -1,0 +1,18 @@
+@import "./src/style_vars.scss";
+:root{
+    --main_page_bg: #DCEEFF;
+    --accent-color: #2D8EFF;
+    --white: #ffffff;
+    --main_text: #B8C1CB;
+}
+
+.auth_page_container{
+    background-color: $bg_grey;
+    color: $bg_dark;
+}
+
+.main_page_pic{
+    background: url('../../img/bg_main.png') center center no-repeat;
+    background-size: cover;
+    padding: 0!important;
+}

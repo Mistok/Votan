@@ -1,0 +1,126 @@
+@import "src/style_vars.scss";
+.votan_logo{
+    color: $blue;
+    font-size: 32px;
+    margin-top: 40px;
+    margin-bottom: 50px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+}
+.auth_form_header{
+    font-size: 16px;
+    text-align: left;
+    color: #212529;
+}
+
+.auth_nav_link{
+    display: inline-block;
+}
+
+.auth_row{
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+}
+
+.form_container{
+    padding: 50px;
+    margin-top: 50px;
+}
+
+.form_container a{
+    color: #ffffff;
+    text-decoration: none;
+    transition: .5s;
+    border-bottom: 2px solid transparent;
+
+}
+
+.form_container a:hover{
+    //border-bottom: 2px solid var(--accent-color);
+}
+
+.registration_nav_link_active{
+    //border-bottom: 2px solid var(--accent-color) !important;
+}
+
+.auth_hr {
+    align-self: center;
+    margin-top: 30px;
+    background-color: $light_blue;
+}
+
+.auth_form_container{
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.auth_label{
+    font-size: 13px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-left: 10px;
+    text-align: left;
+}
+
+.auth_field{
+    border-radius: 4px;
+    padding: 5px 5px 5px 25px;
+    display: block;
+    border: 1px solid $light_blue;
+    letter-spacing: 1.05px;
+    transition: .3s;
+    margin-top: 20px;
+    width: 100%;
+    font-size: 14px;
+    text-transform: none;
+}
+
+.auth_submit{
+    width: 100%;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-top: 20px;
+    transition: .3s;
+    border: 1px solid transparent;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+}
+.auth_submit a:hover{
+    text-decoration: none;
+}
+
+.auth_submit:hover{
+    background-color: darken($blue, 5);
+}
+
+.forgot_password{
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    margin: 30px 0;
+    font-size: 14px;
+}
+
+.field_error{
+    border: 1px solid red;
+}
+
+.field_error_text{
+    font-size: 11px;
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    color: red;
+}
+.auth_role_container{
+    padding-top: 20px;
+    input{
+        margin-right: 20px;
+    }
+    label{
+        font-size: 14px;
+        color: $font_color;
+        margin-right: 20px;
+    }
+}
