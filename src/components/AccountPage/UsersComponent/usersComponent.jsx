@@ -9,13 +9,9 @@ import SingleUserComponent from "./SingleUserComponent/singleUserComponent";
 import "./usersComponent.scss"
 const UsersComponent = (props) => {
 
-    // useEffect(()=>{
-    //     let savedDrafts = DAL_GetPollsDraft()Wx`
-    // },[])
-
     const usersList = () => {
         let usersList = getUsersListThunkCreator()
-        console.log(usersList)
+
     }
     let {path, url} = useRouteMatch()
     return (

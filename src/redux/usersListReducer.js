@@ -376,7 +376,7 @@ const usersListReducer = ( state = initialState, action) => {
     switch (action.type) {
 
         case SET_USERS_LIST:
-            console.log(action.payload)
+            // console.log(action.payload)
             return {
                 ...state,
                 ...action.payload,
@@ -400,19 +400,19 @@ const usersListReducer = ( state = initialState, action) => {
 export const  getUsersListThunkCreator = (dispatch) => {
     return () => {
         console.log('getting users list')
-        dispatch(toggleIsFetchingAC(true))
+        // dispatch(toggleIsFetchingAC(true))
         DAL_GetUsersList()
             .then(
                 res => {
-                    console.log('getting users list success')
-                    dispatch(toggleIsFetchingAC(false))
+
+                    // dispatch(toggleIsFetchingAC(false))
                     return dispatch(set_users_list(res))
                 }
             )
             .catch(
-                (res) => {
+                (error) => {
                     dispatch(toggleIsFetchingAC(false))
-                    console.log('getting users list failure'+res.error)
+                    console.log('getting users list failure'+error.message)
                 }
             )
     }
@@ -427,15 +427,15 @@ export const  deleteUserThunkCreator = (dispatch) => {
         DAL_GetUsersList()
             .then(
                 res => {
-                    console.log('getting users list success')
+                    // console.log('getting users list success')
                     dispatch(toggleIsFetchingAC(false))
                     return dispatch(set_users_list(res))
                 }
             )
             .catch(
-                (res) => {
+                (error) => {
                     dispatch(toggleIsFetchingAC(false))
-                    console.log('getting users list failure'+res.error)
+                    console.log('getting users list failure'+error.message)
                 }
 
             )

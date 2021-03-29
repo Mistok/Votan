@@ -1,30 +1,13 @@
 import React from 'react';
 
 import {connect} from "react-redux";
-import FacilityComponent from "../FacilitiesPage/FacilityComponent/FacilityComponent";
+import SingleApartment from "../ApartmentsTable/SingleApartmentComponent/singleApartment";
 
 const ArchivePage = (props) => {
-    const facilities = props.facilities;
     return (
         <>
             <div className="container">
-                {   facilities.map(  facility =>  (
-                    <>
-                        <FacilityComponent key={Date.now()} facility = {facility}/>
-                        <div className="archive_info_container">
-                            <div className="container">
-                                <div className="row">
-                                    <span className="">status </span>
-                                    <span>{'propsStatusInfo'}</span>
-                                </div>
-                                <div className="row">
-                                    <span className="">status</span>
-                                    <span>{'propsStatusInfo'}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </>
-                    ))}
+
             </div>
 
         </>
@@ -33,7 +16,7 @@ const ArchivePage = (props) => {
 
 let mapStateToProps = (store) => {
     return {
-        facilities: store.facilities,
+        voting: store.voting,
     }
 };
 

@@ -1,10 +1,12 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
 
-import "./AddFacilitiesModal.scss"
-import close from "../../../img/icon_close.png"
-import {CustomInput} from "../../../common/formControls";
-import {keyValidator, requiredField} from "../../../utils/validators";
+import "./UserAddApartmentModal.scss"
+import close from "../../../../img/icon_close.png"
+import {CustomInput} from "../../../../common/formControls";
+import {keyValidator, requiredField} from "../../../../utils/validators";
+import {DAL_AttachApartmentToUser, DAL_CreateNewApartment} from "../../../../api/api";
+import {CLIENT_setApartmentAC} from "../../../../redux/CLIENTCabinetReducer";
 
 const AddFacilitiesModalContainer = (props) => {
     return(
@@ -14,7 +16,7 @@ const AddFacilitiesModalContainer = (props) => {
     )
 }
 
-const modalKeyForm = (props) => {
+const userModalKeyForm = (props) => {
 
     return(
         <form
@@ -27,7 +29,7 @@ const modalKeyForm = (props) => {
                 component={CustomInput}
                 type="text"
                 placeholder='ключ'
-                validate={[requiredField, keyValidator]}
+                validate={[requiredField]}
             />
 
             <div className="row justify-content-center">
@@ -40,11 +42,34 @@ const modalKeyForm = (props) => {
         </form>
     )
 }
-const AddFacilitiesModal = (props) => {
-    const onSubmit = (formData) => {
+const UserAddApartmentModal = (props) => {
+    const showResultHandler = (props, res) => {
+        try{
+            if(res.data.id) {
+                alert(`Приміщення ${res.data.apartmentName} зареэстровано`)
+                props.toggleModal()
+            }
+        } catch {
+            alert(`Помилка ${res.message}`)
+        }
 
-        console.log(formData)
     }
+
+    const onSubmit = (ownerKey) => {
+
+        DAL_AttachApartmentToUser(ownerKey.key)
+            .then(
+                (res) => {
+                    showResultHandler(props, res)
+                    CLIENT_setApartmentAC(res.data)
+                }
+        ) .catch(
+            error => {
+                alert(error.message)
+            }
+        )
+    }
+
     return (
         <AddFacilitiesModalContainer toggleModal={props.toggleModal}>
             <div className="add_fac_modal_container">
@@ -57,7 +82,13 @@ const AddFacilitiesModal = (props) => {
         </AddFacilitiesModalContainer>
     )
 }
-export default AddFacilitiesModal;
 
-const ReduxModalKeyForm = reduxForm({form: 'modalKeyForm'})(modalKeyForm);
+// let mapDispatchToProps = (dispatch) => {
+//     return  {
+//         addNewApartment: () => dispatch()
+//     }
+// }
+export default UserAddApartmentModal;
+
+const ReduxModalKeyForm = reduxForm({form: 'userModalKeyForm'})(userModalKeyForm);
 

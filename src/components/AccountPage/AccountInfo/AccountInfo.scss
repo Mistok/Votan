@@ -1,5 +1,33 @@
+
 @import "./src/style_vars.scss";
 
 .account_info_container{
   background-color: $white;
+  padding: 50px ;
+  width: 100%;
+  color: $text-grey;
+  border-radius: $border-radius;
+  white-space: nowrap;
+  box-shadow: $box-shadow;
+  h1{
+    font-size: 20px;
+  }
+
+}
+.account_info_area{
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 980px){
+  .account_info_container{
+    padding: 30px;
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .account_info_container{
+    padding: 20px;
+    font-size: 11px;
+  }
 }

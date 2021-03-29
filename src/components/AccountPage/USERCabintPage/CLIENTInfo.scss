@@ -1,0 +1,19 @@
+@import '../../../style_vars';
+
+.client_info_container{
+  padding: 50px;
+  background-color: $white;
+  color: $text-grey;
+  font-size: 13px;
+  margin-top: 50px;
+  border-radius: 5px;
+  width: 100%;
+  box-shadow: $box-shadow;
+  h1{
+    font-size: 20px;
+  }
+  .client_info_apartment_container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}

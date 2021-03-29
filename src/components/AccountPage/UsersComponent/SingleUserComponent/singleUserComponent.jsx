@@ -19,8 +19,7 @@ const SingleUserComponent = (props) => {
     const deleteUser = () => {
         DAL_DeleteUser(userId)
     }
-    console.log(userId)
-    console.log(props)
+
     return (
         <>
             <li className="sing_user_container container">

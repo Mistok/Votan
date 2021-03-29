@@ -4,16 +4,19 @@ import { reducer as formReducer } from "redux-form";
 import thunk from "redux-thunk";
 
 import signInReducer from "./authReducer";
-import facilitiesReducer from "./facilitiesReducer";
+import apartmentsReducer from "./apartmentsReducer";
 import usersCabinetReducer from "./usersCabinetReducer";
 import usersListReducer from "./usersListReducer";
 import singleUserInfoReducer from "./singleUserInfoReducer";
 import activeVotingReducer from "./activeVotingsReducer";
+import OSBBCabinetReducer from "./OSBBCabinetReducer";
+import CLIENTCabinetReducer from "./CLIENTCabinetReducer";
 
 let reducers = combineReducers({
-    cabinet: usersCabinetReducer,
-    facilities: facilitiesReducer,
-    usersCabinet: usersCabinetReducer,
+    // cabinet: usersCabinetReducer,
+    // apartments: apartmentsReducer,
+    CLIENTsCabinet: CLIENTCabinetReducer,
+    OSBBsCabinet: OSBBCabinetReducer,
     usersList: usersListReducer,
     singleUser: singleUserInfoReducer,
     auth: signInReducer,

@@ -1,74 +1,195 @@
 // Active voting reducer
 
-import {DAL_GetPollsActive, DAL_GetUsersCabinet} from "../api/api";
+import {DAL_GetPollsActive} from "../api/api";
 
 
 const SET_ACTIVE_VOTING = 'SET_ACTIVE_VOTING';
 
 let initialState =
     {
-        "userCabinet": {
-            "userEmail": "test@test.com",
-            "osbbs": [
-                {
-                    "id": 123,
-                    "name": "Зарічний",
+        "totalPollsNumber": 12,
+        "currentPage": 1,
+        "pageSize": 5,
+        "currentUserOsbbs": [
+            {
+                "id": 234,
+                "osbbDto": {
                     "address": {
                         "house": "5a",
                         "postalCode": "02055",
                         "city": "Київ",
                         "street": "Бажана"
                     },
-                    "currentUserApartments": [
+                    "apartments": [
                         {
-                            "apartmentName": "flat1",
-                            "id": 123,
-                            "ownerKey": "14572-OSRN",
-                            "square": 100
+                            "apartmentName": "string",
+                            "id": 0,
+                            "osbb": {
+                                "accountNonExpired": true,
+                                "accountNonLocked": true,
+                                "address": {
+                                    "city": "string",
+                                    "house": "string",
+                                    "id": 0,
+                                    "postalCode": "string",
+                                    "street": "string"
+                                },
+                                "apartments": [
+                                    null
+                                ],
+                                "apartmentsNumber": 0,
+                                "authorities": [
+                                    {
+                                        "authority": "string"
+                                    }
+                                ],
+                                "confirmed": true,
+                                "credentialsNonExpired": true,
+                                "email": "string",
+                                "enabled": true,
+                                "id": 0,
+                                "name": "string",
+                                "password": "string",
+                                "polls": [
+                                    {
+                                        "active": true,
+                                        "id": 0,
+                                        "questions": [
+                                            {
+                                                "description": "string",
+                                                "id": 0
+                                            }
+                                        ],
+                                        "startDate": "string"
+                                    }
+                                ],
+                                "roles": [
+                                    {
+                                        "id": 0,
+                                        "role": "CLIENT"
+                                    }
+                                ],
+                                "totalSquare": 0,
+                                "username": "string"
+                            },
+                            "ownerKey": "string",
+                            "square": 0,
+                            "user": {
+                                "accountNonExpired": true,
+                                "accountNonLocked": true,
+                                "apartments": [
+                                    null
+                                ],
+                                "authorities": [
+                                    {
+                                        "authority": "string"
+                                    }
+                                ],
+                                "confirmed": true,
+                                "credentialsNonExpired": true,
+                                "email": "string",
+                                "enabled": true,
+                                "id": 0,
+                                "password": "string",
+                                "roles": [
+                                    {
+                                        "id": 0,
+                                        "role": "CLIENT"
+                                    }
+                                ],
+                                "username": "string"
+                            }
                         }
                     ],
-                    "hasUnvotedActivePolls": true
-                }
-            ],
-            "unvotedPollsNumber": 3
-        },
-        "activePolls": [
-            {
-                "active": true,
-                "id": 123,
-                "startDate": "12-04-2020",
-                "osbbId": 1,
-                "questions": [
+                    "apartmentsNumber": 0,
+                    "confirmed": true,
+                    "email": "Ivanov@mail.com",
+                    "name": "not null",
+                    "roles": [
+                        {
+                            "id": 0,
+                            "role": "CLIENT"
+                        }
+                    ],
+                    "totalSquare": 0,
+                    "id": 124
+                },
+                "currentUserApartments": [
                     {
-                        "id": 1,
-                        "description": "Some question #1 here?",
-                        "answer": "YES"
+                        "apartmentName": "flat1",
+                        "id": 123,
+                        "ownerKey": "14572-OSRN",
+                        "square": 100
                     }
                 ]
-            },
+            }
+        ],
+        "polls": [
             {
                 "active": true,
-                "id": 124,
                 "startDate": "12-04-2020",
-                "osbbId": 1,
+                "numberOfApartmentsVoted": 87,
+                "osbbId": 123,
                 "questions": [
                     {
-                        "id": 2,
-                        "description": "Some question #2 here?",
-                        "answer": "YES"
-                    }
-                ]
-            },
-            {
-                "active": true,
-                "id": 125,
-                "startDate": "13-04-2020",
-                "osbbId": 1,
-                "questions": [
+                        "questionDto": {
+                            "description": "питання 1",
+                            "id": 1
+                        },
+                        "answersPercentageByCountMethod": {
+                            "YES": {
+                                "BY_APARTMENTS": 100,
+                                "BY_SQUARE": 35
+                            },
+                            "ABSTAIN": {
+                                "BY_APARTMENTS": 0,
+                                "BY_SQUARE": 0
+                            },
+                            "NO": {
+                                "BY_APARTMENTS": 0,
+                                "BY_SQUARE": 0
+                            }
+                        }
+                    },
                     {
-                        "id": 3,
-                        "description": "Some question #3 here?",
-                        "answer": "YES"
+                        "questionDto": {
+                            "description": "питання 2",
+                            "id": 2
+                        },
+                        "answersPercentageByCountMethod": {
+                            "YES": {
+                                "BY_APARTMENTS": 100,
+                                "BY_SQUARE": 35
+                            },
+                            "ABSTAIN": {
+                                "BY_APARTMENTS": 0,
+                                "BY_SQUARE": 0
+                            },
+                            "NO": {
+                                "BY_APARTMENTS": 0,
+                                "BY_SQUARE": 0
+                            }
+                        }
+                    },
+                    {
+                        "questionDto": {
+                            "description": "питанн 3",
+                            "id": 3
+                        },
+                        "answersPercentageByCountMethod": {
+                            "YES": {
+                                "BY_APARTMENTS": 100,
+                                "BY_SQUARE": 35
+                            },
+                            "ABSTAIN": {
+                                "BY_APARTMENTS": 0,
+                                "BY_SQUARE": 0
+                            },
+                            "NO": {
+                                "BY_APARTMENTS": 0,
+                                "BY_SQUARE": 0
+                            }
+                        }
                     }
                 ]
             }
@@ -81,6 +202,7 @@ const activeVotingReducer = ( state = initialState, action) => {
     switch (action.type) {
 
         case SET_ACTIVE_VOTING:
+
             return {
                 ...state,
                 ...action.payload,
@@ -98,15 +220,14 @@ export const setActiveVoting  = (voting) => (
 
 export const  getActiveVotingThunkCreator = (dispatch) => {
     return (dispatch) => {
-        debugger
-        console.log('getting active voting')
+        // console.log('getting active voting')
         // dispatch(toggleIsFetchingAC(true))
-        debugger
         DAL_GetPollsActive()
             .then(
                 res => {
-                    console.log(res)
+                    // console.log(res)
                     return dispatch(setActiveVoting(res))
+
                 }
             )
             .catch(

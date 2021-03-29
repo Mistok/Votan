@@ -17,11 +17,11 @@ function App() {
     return (
 
      <BrowserRouter>
-         <HeaderContainer/>
+         {/*<HeaderContainer/>*/}
          <div>
              <Switch>
-                 <Route path='/main' component={MainPage}/>
-                 <Route path='/account' component={AccountPage}/>
+                 <Route path='/main' component={MainPage}  />
+                 <Route path='/account' component={AccountPage} />
                  <Route exact path='*' component={ErrorPage}/>
              </Switch>
          </div>

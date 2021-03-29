@@ -1,8 +1,7 @@
 
 // usersCabinetReducer reducer
 
-import {DAL_GetUsersCabinet} from "../api/api";
-import {toggleIsFetchingAC} from "./authReducer";
+
 
 const SET_USER_CABINET_DATA = 'SET_USER_CABINET_DATA';
 
@@ -11,7 +10,7 @@ let initialState = {
     userEmail: "undefined@test.com",
     osbbs: [
         {
-            name: "Default",
+            name: "none",
             address: {
                 house: "0",
                 postalCode: "00000",
@@ -38,7 +37,7 @@ const usersCabinetReducer = ( state = initialState, action) => {
     switch (action.type) {
 
         case SET_USER_CABINET_DATA:
-            console.log(action.payload)
+            // console.log(action.payload)
             return {
                 ...state,
                 ...action.payload,
@@ -54,27 +53,29 @@ const usersCabinetReducer = ( state = initialState, action) => {
 export const set_user_cabinet_data  = (values) => (
     {type: SET_USER_CABINET_DATA, payload: {...values}});
 
-export const  getCabinetThunkCreator = (dispatch) => {
-    return () => {
-        console.log('getting cabinet')
-        dispatch(toggleIsFetchingAC(true))
+// export const  getUserCabinetThunkCreator = (dispatch) => {
+//     debugger
+//     return () => {
+//         console.log('getting cabinet')
+//         dispatch(toggleIsFetchingAC(true))
+//
+//         DAL_GetUsersCabinet()
+//             .then(
+//                 res => {
+//                     dispatch(toggleIsFetchingAC(false))
+//                     return dispatch(set_user_cabinet_data(res))
+//                 }
+//             )
+//             .catch(
+//                 (error) => {
+//                     dispatch(toggleIsFetchingAC(false))
+//                 }
+//
+//             )
+//     }
+//
+// }
 
-        DAL_GetUsersCabinet()
-            .then(
-                res => {
-                    dispatch(toggleIsFetchingAC(false))
-                    return dispatch(set_user_cabinet_data(res))
-                }
-            )
-            .catch(
-                (res) => {
-                    dispatch(toggleIsFetchingAC(false))
-                }
-
-            )
-    }
-
-}
 
 
 export default usersCabinetReducer;

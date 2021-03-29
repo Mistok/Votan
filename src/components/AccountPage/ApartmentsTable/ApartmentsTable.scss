@@ -1,0 +1,26 @@
+@import '../../../style_vars';
+.apartments_table{
+  margin-top: 30px;
+  background: $white;
+  border-radius: 5px;
+  box-shadow: $box-shadow;
+}
+.apartments_header{
+  background: $light_blue;
+  padding: 30px;
+  font-weight: 400 !important;
+  border-radius: 5px;
+}
+
+.apartments_table_cel, th{
+  text-align: right;
+  cursor: pointer;
+}
+
+.apartments_table{
+  font-size: 12px;
+  white-space: nowrap;
+  .btn{
+    font-size: 13px;
+  }
+}

@@ -7,38 +7,31 @@ import "./AccountPage.scss"
 
 import {connect} from "react-redux";
 
-import AddFacilitiesModal from "./AddFacilitiesModal/AddFacilitiesModal";
-import { OsbbRegisterForm } from "../OSBBRegisterForm/osbbRegisterForm.jsx";
-import { getCabinetThunkCreator } from "../../redux/usersCabinetReducer";
 import Preloader from "../preloader/preloader";
 import UsersComponent from "./UsersComponent/usersComponent";
-import AccountInfo from "./AccountInfo/AccountInfo";
 
+import USERCabinetPage from "./USERCabintPage/USERCabinetPage";
+import OSBBCabinetPage from "./OSBBCabinetPage/OSBBCabinetPage";
+import {getOSBBCabinetThunkCreator} from "../../redux/OSBBCabinetReducer";
+import {getCLIENTCabinet} from "../../redux/CLIENTCabinetReducer";
 
 const AccountPage = (props) => {
+    let role = sessionStorage.role;
 
-    const [ isModalOpen, setIsModalOpen ] = useState(false);
     useEffect( () => {
-        console.log('getting user cabinet info')
-        props.getCabinet()
+        role === 'OSBB' ? props.getOSBBCabinet() : props.getCLIENTCabinet()
     }, [])
-    const toggleModal = (e) => {
-        setIsModalOpen( !isModalOpen )
-    }
 
-    // if (!props.isAuth){
-    //     alert("Необхідно авторизуватися")
-    //         return <Redirect to={"/main/login"}/>
-    //     }
+    // console.log(`Role in cabinet ${role}`)
 
     return (
         <>
             <section className="account_section row ml-0 mr-0 p-0">
-                {/*<button onClick={props.getCabinet} className="btn btn-primary w-100">get cabinet info</button>*/}
+
                 <div className="accounts_page_left col-12  col-sm-3 col-lg-2 justify-content-between ">
 
                     <nav className="navbar navbar-expand-sm navbar-light  navbar-container flex-row flex-sm-column">
-                        <h1 className="votan_logo">Votan</h1>
+                        <NavLink className="votan_logo" to="/main/login">Votan</NavLink>
                         <button className="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbar"
                                 aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -93,7 +86,7 @@ const AccountPage = (props) => {
                                             <NavLink className="nav-link accounts_sub_link"
                                                      to={"/account/voting/archive"} href="#">Архів</NavLink>
                                         </li>
-                                        {(props.role === 'osbb' || props.role === 'admin')
+                                        {role === 'OSBB'
                                             ? <>
                                                 <li className="nav-item accounts_sub_link_container">
                                                     <NavLink className="nav-link accounts_sub_link"
@@ -137,6 +130,7 @@ const AccountPage = (props) => {
                             </ul>
                         </div>
                     </nav>
+
                 </div>
 
                 <div className="accounts_page_right col-12 col-sm-9 col-md-8 p-0">
@@ -146,31 +140,24 @@ const AccountPage = (props) => {
                             : <div className="container align-content-center">
 
                                     <div className="account_info row justify-content-between">
-
-                                        {props.role === "user"
-                                            ? <>
-                                                <div className="accounts_info_left col-12 col-md-8  align-content-center">
-                                                    <a href="#" className=" p-0">{props.cabinet.userEmail || "default@test.com"} </a>
-                                                    <a href="#" className=" p-0">Активних голосуваннь: {props.cabinet.unvotedPollsNumber || 0}</a>
-                                                </div>
-                                                <button
-                                                    className="col-12 col-md-3 btn btn-primary account_add_facility mt-2 mt-lg-0"
-                                                    onClick={toggleModal}
-                                                >
-                                                    'Додати приміщення'
-                                                </button>
-                                            </>
-                                            : <AccountInfo />
+                                        {
+                                            {
+                                                'CLIENT':
+                                                    <Route
+                                                            path="/account"
+                                                            component={USERCabinetPage}
+                                                            exact
+                                                    />,
+                                                'OSBB': <Route
+                                                    path="/account"
+                                                    component={OSBBCabinetPage}
+                                                    exact
+                                                />
+                                            }[role]
                                         }
+
                                     </div>
-                                {
-                                    (props.role === 'osbb')
-                                        ? <Route exact
-                                                 path="/account"
-                                                 component={OsbbRegisterForm}
-                                        />
-                                        : ''
-                                }
+
                                 <Route
                                     path="/account/voting"
                                     component={VotingPage}
@@ -189,14 +176,6 @@ const AccountPage = (props) => {
                 </div>
 
             </section>
-            {
-                isModalOpen &&
-                ReactDOM.createPortal(
-                <AddFacilitiesModal toggleModal={toggleModal}/>
-                ,
-                document.getElementById('portal')
-                )
-            }
         </>
     );
 }
@@ -205,14 +184,15 @@ let mapStateToProps = (state) => {
     return {
         isAuth: state.auth.isAuth,
         role: state.auth.role,
-        cabinet: state.cabinet,
         isFetching: state.auth.isFetching,
     }
 }
+
 let mapDispatchToProps = (dispatch) => {
     return{
-        getCabinet: () => dispatch(getCabinetThunkCreator(dispatch))
+        getOSBBCabinet: () => {dispatch(getOSBBCabinetThunkCreator(dispatch))},
+        getCLIENTCabinet: () => {dispatch(getCLIENTCabinet(dispatch))}
+
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPage);

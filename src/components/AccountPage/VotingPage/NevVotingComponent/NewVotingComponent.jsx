@@ -38,7 +38,6 @@ const renderQuestions = ({fields, meta: {error}, pristine, submitting}) => {
                                 <span>Текст питання {index+1}</span>
                                 <Field
                                     className="new_voting_field"
-                                    // name={`${description}`+'description'+"_"+index}
                                     name={`${description}`+'description'}
                                     id={index}
                                     component={CustomTextArea}

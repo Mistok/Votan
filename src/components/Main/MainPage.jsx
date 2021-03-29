@@ -1,11 +1,17 @@
 import React from 'react';
-import  {LoginReduxForm, RegisterReduxForm} from "../AuthPage/AuthPage";
+import LogInContainer from "../AuthPage/AuthPage";
 import "./MainPage.scss";
-import {Route} from "react-router-dom";
+import {NavLink, Route, Switch} from "react-router-dom";
+import {RegisterComponent} from "../AuthPage/RegisterComponent";
+import {RegisterClient} from "../AuthPage/RegisterClient";
+import {RegisterOSBB} from "../AuthPage/RegisterOSBB";
+import {OSBBRegisterForm} from "../AccountPage/OSBBRegisterForm/osbbRegisterForm";
+import {useRouteMatch} from "react-router-dom";
 
 
-const MainPage = (props) => {
 
+const   MainPage = (props) => {
+    let { path, url } = useRouteMatch();
     return (
         <>
             <div className="row ml-0 mr-0">
@@ -14,23 +20,44 @@ const MainPage = (props) => {
 
                     <div className="vh-100 row">
                         <div className="container">
-                            <h1 className="votan_logo">Votan</h1>
-                            <Route exact
-                                   path="/main/login"
-                                   component={LoginReduxForm}
-                            />
-                            <Route exact
-                                   path="/main/registration"
-                                   component={RegisterReduxForm}
-                            />
+                            <NavLink className="votan_logo" to={`${path}/login`}>Votan</NavLink>
+                            <Switch>
+                                <Route exact
+                                       path={ `${url}/login` }
+                                       component = {LogInContainer}
+                                />
+                                <Route exact
+                                       path={ `${url}/registration` }
+                                       component={RegisterComponent}
+                                />
+                                <Route exact
+                                       path={ `${url}/registration/client` }
+                                       component={RegisterClient}
+                                />
+                                <Route exact
+                                       path= { `${url}/registration/osbb` }
+                                       component={RegisterOSBB}
+                                />
+
+                            </Switch>
+
                         </div>
 
 
                     </div>
+
                 </div>
                 <div className="col-0 col-sm-8 col-lg-9  p-0">
-                    <div className="main_page_pic vh-100"/>
+                    <div className="main_page_pic vh-100">
+                        <Route exact
+                               path={ `${url}/registration/osbb` }
+                               component={OSBBRegisterForm}
+                        />
+
+                    </div>
+
                 </div>
+
             </div>
 
         </>
