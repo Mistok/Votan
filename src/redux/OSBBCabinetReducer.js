@@ -121,11 +121,12 @@ let initialState = {
     },
     "apartments": [
         {
-            "apartmentName": "flat1",
-            "id": 123,
-            "ownerKey": "14572-OSRN",
-            "square": 100
-        }
+            "apartmentName": "відсутньє",
+            "id": 0,
+            "ownerKey": "відсутній",
+            "square": 0
+        },
+
     ]
 }
 

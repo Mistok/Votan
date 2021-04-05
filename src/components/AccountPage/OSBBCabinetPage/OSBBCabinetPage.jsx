@@ -12,11 +12,10 @@ const OSBBCabinetPage = (props) => {
     const [ isModalOpen, setIsModalOpen ] = useState(false);
 
     const toggleModal = (e) => {
-        setIsModalOpen( !isModalOpen )
+        setIsModalOpen( !isModalOpen );
     }
     return (
         <>
-
              <div className="cabinet_container">
                   <AccountInfo toggleModal={toggleModal} />
                   <ApartmentsTable apartments={props.apartments} />

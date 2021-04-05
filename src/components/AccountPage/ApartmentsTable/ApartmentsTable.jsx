@@ -9,9 +9,10 @@ import "./../../../img/icon_options.png";
 const ApartmentsTableContainer = (props) => {
 
     useEffect(()=>{
-        console.log('2st use effect in table')
+        console.log('useEffect in table run')
         setTable(props.apartments)
     }, [props.apartments])
+
     const [table, setTable] = useState(props.apartments);
     const [sortDirection, setSortDirection] = useState(true);
     const [isSorted, setIsSorted] = useState(false)
@@ -27,63 +28,52 @@ const ApartmentsTableContainer = (props) => {
         const  copyData = props.apartments.concat();
         if(sortDirection) {
             const sortedTable = copyData.sort((a, b)=>{
-                return +a[field] > +b[field] ? 1 : -1
+                return +a[field] > +b[field] ? 1 : -1;
             })
             setTableCopy(sortedTable)
         } else {
             const sortedTable = copyData.sort((a, b)=>{
                 return +a[field] < +b[field] ? 1 : -1;
             })
-            setTableCopy(sortedTable)
+            setTableCopy(sortedTable);
         }
-
-        debugger
         setSortDirection(!sortDirection);
-        setIsSorted(true)
-
+        setIsSorted(true);
     }
 
     const sortByOwnerKey = (field) => {
+
         const  copyData = props.apartments.concat();
-        const haveKeyTable = copyData.filter((a)=>{
-            return a[field] !== null
+        const haveNoKey = [];
+        const haveKey = [];
+        copyData.map( apartment => {
+            apartment[field] === null ?  haveNoKey.push(apartment) : haveKey.push(apartment)
         })
-        const haveNoKeyTable = props.apartments.concat().filter((a)=>{
-            return a[field] === null
-        })
-        console.log(`'''`)
-        console.log(haveKeyTable)
-        console.log(`'''`)
-        console.log(haveNoKeyTable)
-        console.log(`'''`)
         if(sortDirection) {
-            const newTable = Object.assign( haveKeyTable, haveNoKeyTable)
-            console.log(newTable)
-            setTableCopy(newTable)
-            setSortDirection(!sortDirection)
+            const newTable = [].concat(haveKey, haveNoKey);
+            setTableCopy(newTable);
+            setSortDirection(!sortDirection);
+            setIsSorted(true);
         } else {
-            const newTable = Object.assign(  haveNoKeyTable, haveKeyTable)
-            console.log(newTable)
-            setTableCopy(newTable)
-            setSortDirection(!sortDirection)
-
+            const newTable = [].concat(haveNoKey, haveKey);
+            setTableCopy(newTable);
+            setSortDirection(!sortDirection);
+            setIsSorted(true);
         }
-
     }
     const filterData = (e) => {
-        console.log(table)
         let query = e.currentTarget.value
         if (e) {
+            if(!query) {
+                setIsSorted(false);
+                return;
+            }
             let newTable = table.filter( apartment => {
-                // debugger
                 if(apartment.apartmentName.toLowerCase().includes(query.toLowerCase()))
-                    {
-                        return apartment
-                    }
-
+                    {return apartment}
             })
-            console.log(newTable)
-            setTableCopy(newTable)
+            setTableCopy(newTable);
+            setIsSorted(true);
         }
     }
     return (
@@ -100,6 +90,7 @@ const ApartmentsTableContainer = (props) => {
                     <th> </th>
                 </tr>
                 </thead>
+
                 <tbody>
                 {   isSorted
                     ? tableCopy.map(
@@ -112,7 +103,6 @@ const ApartmentsTableContainer = (props) => {
                                 <SingleApartment apatrment={apartment} sortData={sortData} key={apartment.id}/>
                             )
                         )
-
                 }
                 </tbody>
             </table>

@@ -20,7 +20,7 @@ const AccountPage = (props) => {
 
     useEffect( () => {
         role === 'OSBB' ? props.getOSBBCabinet() : props.getCLIENTCabinet()
-    }, [])
+    }, [props.apartments])
 
     // console.log(`Role in cabinet ${role}`)
 

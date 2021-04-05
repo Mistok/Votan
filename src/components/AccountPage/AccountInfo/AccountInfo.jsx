@@ -4,8 +4,6 @@ import {connect} from "react-redux";
 import "./AccountInfo.scss"
 
 const AccountInfoContainer = (props) => {
-    console.log('account info props')
-    console.log(props)
     return (
             <>
                 {
