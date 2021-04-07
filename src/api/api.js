@@ -127,6 +127,7 @@ export const DAL_Vote = (vote) => {
         }
     ).catch(
         (res) => {
+            console.log(res)
             return res.error
         }
     )

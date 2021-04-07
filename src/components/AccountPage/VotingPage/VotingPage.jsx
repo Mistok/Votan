@@ -1,5 +1,4 @@
 import React from 'react';
-import FacilitiesContainer from "../ApartmentsTable/ApartmentsTable";
 import {connect} from "react-redux";
 import {  Route, useRouteMatch } from "react-router-dom";
 import NewVotingComponent from "./NevVotingComponent/NewVotingComponent";
