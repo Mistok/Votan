@@ -37,13 +37,34 @@ const ActiveVoting = (props) => {
         props.getActivePools();
     }, []);
 
-    const votingHandler = (e, values) => {
-        e.preventDefault()
+    const votingHandler = (event, id) => {
+
+        event.preventDefault()
+        debugger
+        const currentFormName = event.nativeEvent.target.name;
+        const currentForm = document.forms[currentFormName];
+        let answerType = '';
+        let questionId = +currentFormName.substr(9,);
+        currentForm.forEach = [].forEach
+        console.log(typeof currentForm)
+        for (let key in currentForm ){
+            console.log(key)
+        }
+        // for ( let i = 0; i < currentForm.length; i++){
+        //     currentForm[i].checked ? answerType = currentForm[i].value : null
+        // }
+
+        console.log(currentForm)
+
+        // const formCallerName = `question_${id}`;
+        // const formCaller = document.forms[formCallerName];
+        // console.log(id)
+
         let vote = [
             {
-                "id": 1,
-                "answerType": values,
-                "questionId": values.questionId
+                "id": questionId,
+                "answerType": answerType,
+                "questionId": questionId
             }
         ]
         DAL_Vote(vote)
@@ -128,9 +149,9 @@ const ActiveVoting = (props) => {
                                             <div>
                                                 <h1 className="client_voting_header">Ваша відповідь:</h1>
 
-                                                <form name={`question${props.questionDto.id}`} onSubmit={(e) => votingHandler(e, question.id)}>
+                                                <form name={`question_${question.questionDto.id}`}  onSubmit={(event) => votingHandler(event)}>
                                                     <div>
-                                                        <input id={`${question.questionDto.id}_yes`} type="radio" value={'YES'} checked name="answer"/>
+                                                        <input id={`${question.questionDto.id}_yes`} type="radio" value={'YES'} name="answer"/>
                                                         <label htmlFor={`${question.questionDto.id}_yes`} className="client_voting_label">  Так</label>
                                                     </div>
                                                     <div>
@@ -142,7 +163,7 @@ const ActiveVoting = (props) => {
                                                         <label htmlFor={`${question.questionDto.id}_abstein`} className="client_voting_label">Утриматися</label>
                                                     </div>
                                                     <input type="text" name="questionId" value={question.questionDto.id} hidden/>
-                                                    <div className="btn btn-primary w-100 mt-2">Голосувати</div>
+                                                    <button className="btn btn-primary w-100 mt-2">Голосувати</button>
                                                 </form>
                                                 {voteError? voteError : ''}
                                             </div>
