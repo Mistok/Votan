@@ -47,8 +47,8 @@ const ActiveVoting = (props) => {
         let questionId = +currentFormName.substr(9,);
         currentForm.forEach = [].forEach
         console.log(typeof currentForm)
-        for (let key in currentForm ){
-            console.log(key)
+        for (let i = 0; i < 3 ; i++){
+            currentForm[i].checked ? answerType = key.value : ''
         }
         // for ( let i = 0; i < currentForm.length; i++){
         //     currentForm[i].checked ? answerType = currentForm[i].value : null
