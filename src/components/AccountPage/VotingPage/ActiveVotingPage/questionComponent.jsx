@@ -45,16 +45,16 @@ const ActiveVoting = (props) => {
         const currentForm = document.forms[currentFormName];
         let answerType = '';
         let questionId = +currentFormName.substr(9,);
-        currentForm.forEach = [].forEach
-        console.log(typeof currentForm)
         for (let i = 0; i < 3 ; i++){
-            currentForm[i].checked ? answerType = key.value : ''
+            if(currentForm[i].checked) {
+                answerType = currentForm[i].value
+            }
         }
         // for ( let i = 0; i < currentForm.length; i++){
         //     currentForm[i].checked ? answerType = currentForm[i].value : null
         // }
 
-        console.log(currentForm)
+
 
         // const formCallerName = `question_${id}`;
         // const formCaller = document.forms[formCallerName];
@@ -67,6 +67,7 @@ const ActiveVoting = (props) => {
                 "questionId": questionId
             }
         ]
+        console.log(vote)
         DAL_Vote(vote)
             .then(response => {
                 console.log(response);
